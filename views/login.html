@@ -1,0 +1,25 @@
+ <div class="form-box" id="login-box">
+     <div class="header">El Campito</div>
+     <form class="body bg-gray" method="post" id="FormIngreso" name="FormIngreso"  enctype="multipart/form-data">
+         <div class="form-group">
+             <input type="email" placeholder="ingrese mail" ng-model="usuario.mail" required><br>
+         </div>
+         <div class="form-group">
+             <input type="text"  placeholder="ingrese usuario" ng-model="usuario.nombre" required><br>
+         </div>
+         <div class="form-group">
+             <input type="password"  placeholder="ingrese clave" ng-model="usuario.clave" required><br>
+         </div>
+         <br>
+         <div>
+             <button type="submit" class="btn btn-block" value="Login" ng-Click="Login()" ng-disabled="FormIngreso.$invalid">Ingresar</button>
+         </div>
+         <br>
+         <div>
+             <button type="submit" class="btn btn-block" value="Administrador" ng-Click="Carga('Administrador')" > Administrador</button>
+         </div>
+         <div>
+         <button type="submit" class="btn btn-block" value="Registrarse" ng-Click="Carga('Administrador')" > Registrarse</button>
+        </div>
+     </form>
+ </div>

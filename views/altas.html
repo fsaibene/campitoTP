@@ -1,0 +1,158 @@
+<header  ng-if="usuario.perfil == 'administrador'" class="header">
+      <nav class="navbar navbar-default">
+         <a href="index2.html" class="logo" style="  float: left;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+  padding: 0 10px;
+  font-family: 'FCsistemasFont';
+  font-weight: 500;
+  height: 50px;
+  display: block;">
+            EL CAMPITO
+         </a>
+         <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+               <ul class="nav navbar-nav">
+                  <li class="dropdown user user-menu">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span>{{usuario.nombre}}<i class="caret"></i></span>
+                     </a>
+                     <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header bg-light-blue">
+                           <!--<a href="<?=getPath().'/pages/'?>Perfil.php"><img src="<?=getPath();?>/files/avatars/<?=$usuarioLogueado->getAvatar();?>" class="/img-circle" style="overflow:hidden;-webkit-border-radius:70px;-moz-border-radius:70px;border-radius:70px;width:100px;height:100px;" alt="User Image" /></a>-->
+                           <p>
+                              <strong>{{usuario.nombre}}</strong>
+                              <small>{{usuario.perfil}}</small>
+                           </p>
+                        </li>
+                        <li class="user-footer">
+                           <div class="pull-right">
+                              <a  ng-Click="Deslogearse()" class="btn btn-default btn-flat">Desloguearse</a>
+                           </div>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </nav>
+   </header>
+<aside class="content-header" ng-if="usuario.perfil == 'administrador'" style=";width: 150px; float:left">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <nav class="navbar navbar-default" role="navigation">
+         <div class="container" style="font-family: FCsistemasFont; float: left; width: auto">
+            <div id="sidebar-wrapper" class="sidebar-toggle">
+               <ul class="sidebar-nav">
+                  <li>
+                     <a ui-sref="altas">Alta Usuarios</a>
+                  </li>
+                  <li>
+                     <a ui-sref="grilla">Alta Locales</a>
+                  </li>
+                  <li>
+                     <a ui-sref="grilla">Grilla</a>
+                  </li>
+                  <li>
+                     <a ui-sref="#item3">Estadisticas</a>
+                  </li>
+                  <li>
+                     <a ui-sref="#item3">Maps</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+</aside>
+<div ng-if="usuario.perfil == 'administrador'" style="width: 400px;margin: 0 auto; border-style: solid;
+    border-color: black; text-align : center">
+         <form id="FormIngreso" class="form-style-4" name="FormIngreso" enctype="multipart/form-data" >
+            <h3>ALTAS DE USUARIO</h3>
+            <input type="email"  placeholder="ingrese mail" ng-model="user.mail" required><br>
+            <input type="text"  placeholder="ingrese nombre" ng-model="user.nombre" required><br>
+            <input type="password"  placeholder="ingrese clave" ng-model="user.clave" required><br>
+            <label>
+               <input type="radio" ng-model="user.perfil" value="administrador">
+               Administrador
+            </label>
+            <label>
+               <input type="radio" ng-model="user.perfil" value="comprador">
+               Comprador
+            </label>
+            <label>
+               <input type="radio" ng-model="user.perfil" value="vendedor">
+               Vendedor
+            </label>
+            <input type="button" value="Alta de usuario" ng-disabled="FormIngreso.$invalid" ng-Click="AltaUsuario()" ></input>
+         </form>
+</div>
+
+   <!--<div ng-if="user.id != 'no'">-->
+   <!--<h3>MODIFICAR  USUARIO</h3>-->
+   <!--<form id="FormIngreso" name="FormIngreso" enctype="multipart/form-data" style="width: 400px" >-->
+   <!--<input type="email"  placeholder="ingrese  mail" ng-model="user.mail" required></input><br>-->
+   <!--<input type="text"  placeholder="ingrese nombre" ng-model="user.nombre" required></input><br>-->
+   <!--<input type="password"  placeholder="ingrese clave" ng-model="user.clave" required></input><br>-->
+   <!--<input type="hidden" ng-model="user.id"></input>-->
+   <!--<label>-->
+   <!--<input type="radio" ng-model="user.perfil" value="administrador">-->
+   <!--administrador-->
+   <!--</label><br/>-->
+   <!--<label>-->
+   <!--<input type="radio" ng-model="user.perfil" ng-value="comprador">-->
+   <!--comprador-->
+   <!--</label><br/>-->
+   <!--<label>-->
+   <!--<input type="radio" ng-model="user.perfil" value="vendedor">-->
+   <!--vendedor-->
+   <!--</label><br/>-->
+   <!--</div>-->
+   <!--<input type="button" value="Alta de usuario" ng-disabled="FormIngreso.$invalid" ng-Click="AltaUsuario()" ></input>-->
+   <!--</form>-->
+<!--<div ng-if="usuario.perfil != 'administrador'">-->
+   <!--<nav class="navbar navbar-default">-->
+      <!--<div class="container-fluid">-->
+         <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+         <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+            <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="#">PARCIAL</a>-->
+         <!--</div>-->
+         <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+         <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav">-->
+               <!--<li><a ui-sref="inicio">inicio</a></li>-->
+               <!--<li><a ui-sref="login">Desloguearse</a></li>-->
+               <!--<li><a ui-sref="altas" ng-if="usuario.perfil == 'vendedor'">Alta Productos</a></li>-->
+               <!--<li><a ui-sref="grilla">Grilla</a></li>-->
+                <!--&lt;!&ndash;<li><a ui-sref="grillaDirectiva">GrillaDirectivas</a></li>&ndash;&gt;-->
+            <!--</ul>-->
+         <!--</div>-->
+         <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+   <!--</nav>-->
+<!--</div>-->
+<!--<div ng-if="usuario.perfil != 'administrador'">-->
+   <!--<h3>ALTAS DE PRODUCTO</h3>-->
+   <!--<div class="form-style-8">-->
+      <!--<form id="FormIngreso" name="FormIngreso" enctype="multipart/form-data" style="width: 400px">-->
+         <!--<input type="text"  placeholder="ingrese nombre de producto" ng-model="producto.nombre" required></input><br>-->
+         <!--<input type="text"  placeholder="ingrese precio de producto" ng-model="producto.precio" required></input><br>-->
+         <!--<input type="button" value="Alta" ng-Click="AltaProducto()" ng-disabled="FormIngreso.$invalid"></input>-->
+      <!--</form>-->
+   <!--</div>-->
+<!--</div>-->
+
