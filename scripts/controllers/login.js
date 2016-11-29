@@ -12,16 +12,21 @@ angular
                 $scope.usuario.clave = "administrador";
 
 
-            } else if (parametro === "Vendedor") {
-                $scope.usuario.mail = "vendedor@vendedor.com";
-                $scope.usuario.nombre = "vendedor";
-                $scope.usuario.clave = "vendedor";
+            } else if (parametro === "Cliente") {
+                $scope.usuario.mail = "cliente@cliente.com";
+                $scope.usuario.nombre = "cliente";
+                $scope.usuario.clave = "cliente";
 
 
-            } else if (parametro === "Comprador") {
-                $scope.usuario.mail = "comprador@comprador.com";
-                $scope.usuario.nombre = "comprador";
-                $scope.usuario.clave = "comprador";
+            } else if (parametro === "Encargado") {
+                $scope.usuario.mail = "encargado@encargado.com";
+                $scope.usuario.nombre = "encargado";
+                $scope.usuario.clave = "encargado";
+            }
+            else if (parametro === "Empleado") {
+                $scope.usuario.mail = "empleado@empleado.com";
+                $scope.usuario.nombre = "empleado";
+                $scope.usuario.clave = "empleado";
             }
         }
         if ($auth.isAuthenticated())

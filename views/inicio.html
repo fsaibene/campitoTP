@@ -1,8 +1,8 @@
  
-<div ng-if="nada == 'nada'">
+<div ng-if="nada == 'nada'" style="width: 250px; text-align: center; margin: 0 auto; padding-top: 300px">
 <button ng-click="IrLogin()" class="btn btn-block">Ingresar</button>
 </div>
-<header  ng-if="usuario.perfil == 'administrador'" class="header">
+<header  ng-if="nada != 'nada'" class="header">
   <nav class="navbar navbar-default">
     <a href="index2.html" class="logo" style="  float: left;
   font-size: 20px;
@@ -13,7 +13,7 @@
   font-weight: 500;
   height: 50px;
   display: block;">
-     EL CAMPITO
+      EL CAMPITO
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
       <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -22,45 +22,45 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-        <div class="navbar-right">
-          <ul class="nav navbar-nav">
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-user"></i>
-                <span>{{usuario.nombre}}<i class="caret"></i></span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- User image -->
-                <li class="user-header bg-light-blue">
-                  <!--<a href="<?=getPath().'/pages/'?>Perfil.php"><img src="<?=getPath();?>/files/avatars/<?=$usuarioLogueado->getAvatar();?>" class="/img-circle" style="overflow:hidden;-webkit-border-radius:70px;-moz-border-radius:70px;border-radius:70px;width:100px;height:100px;" alt="User Image" /></a>-->
-                  <p>
-                    <strong>{{usuario.nombre}}</strong>
-                    <small>{{usuario.perfil}}</small>
-                  </p>
-                </li>
-                <li class="user-footer">
-                  <div class="pull-right">
-                     <a  ng-Click="Deslogearse()" class="btn btn-default btn-flat">Desloguearse</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <div class="navbar-right">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="glyphicon glyphicon-user"></i>
+              <span>{{usuario.nombre}}<i class="caret"></i></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header bg-light-blue">
+                <!--<a href="<?=getPath().'/pages/'?>Perfil.php"><img src="<?=getPath();?>/files/avatars/<?=$usuarioLogueado->getAvatar();?>" class="/img-circle" style="overflow:hidden;-webkit-border-radius:70px;-moz-border-radius:70px;border-radius:70px;width:100px;height:100px;" alt="User Image" /></a>-->
+                <p>
+                  <strong>{{usuario.nombre}}</strong>
+                  <small>{{usuario.perfil}}</small>
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a  ng-Click="Deslogearse()" class="btn btn-default btn-flat">Desloguearse</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </nav>
+  </nav>
 </header>
-<div ng-if="usuario.perfil == 'administrador'" style="width: 150px">
-    <!-- sidebar: style can be found in sidebar.less -->
+<aside class="content-header" ng-if="nada != 'nada'" style=";width: 150px; float:left">
+  <!-- sidebar: style can be found in sidebar.less -->
   <nav class="navbar navbar-default" role="navigation">
-    <div class="container" style="font-family: FCsistemasFont; text-align: left">
+    <div class="container" style="font-family: FCsistemasFont; float: left; width: auto">
       <div id="sidebar-wrapper" class="sidebar-toggle">
         <ul class="sidebar-nav">
-          <li>
+          <li ng-if="usuario.perfil == 'administrador'  || usuario.perfil == 'empleado'">
             <a ui-sref="altas">Alta Usuarios</a>
           </li>
-          <li>
-            <a ui-sref="grilla">Alta Locales</a>
+          <li ng-if="usuario.perfil == 'administrador'">
+            <a ui-sref="altaLocales">Alta Locales</a>
           </li>
           <li>
             <a ui-sref="grilla">Grilla</a>
@@ -75,11 +75,4 @@
       </div>
     </div>
   </nav>
-</div>
-
-<div ng-if="usuario.perfil == 'comprador'">
-  <h3 style="color:white;">BIENVENIDO  {{usuario.nombre}}</h3>
-</div>
-<div ng-if="usuario.perfil == 'vendedor'">
-  <h3 style="color:white;">BIENVENIDO  {{usuario.nombre}}</h3>
-</div>
+</aside>

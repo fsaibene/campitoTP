@@ -51,6 +51,16 @@ $authProvider.tokenRoot = null;
       templateUrl: 'views/grillaUsuarios.html',
       controller:'grillaUsuarios'
     })
+    .state('altaLocales', {
+      url: '/altaLocales',
+      templateUrl: 'views/altaLocales.html',
+      controller:'altaLocales'
+    })       
+    .state('altaInmuebles', {
+      url: '/altaInmuebles',
+      templateUrl: 'views/altaInmuebles.html',
+      controller:'altaInmuebles'
+    })
     .state('grillaDirectiva', {
       url: '/grillaDirectiva',
       templateUrl: 'views/grillaDirectiva.html',

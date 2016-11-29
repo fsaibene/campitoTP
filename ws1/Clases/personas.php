@@ -42,6 +42,22 @@ class Usuario
 		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");	
 		return $arrEmpleado;
 	}
+	public static function TraerTodosLosEmpleados(){
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select id,mail as mail,nombre as nombre, clave as clave,perfil as perfil  from usuarios where perfil = 'empleado'");
+		$consulta->execute();
+		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");
+		return $arrEmpleado;
+	}
+	public static function TraerTodosLosEncargados(){
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select id,mail as mail,nombre as nombre, clave as clave,perfil as perfil  from usuarios where perfil = 'encargado'");
+		$consulta->execute();
+		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");
+		return $arrEmpleado;
+	}
 	
 	public static function BorrarUsuario($idParametro){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 

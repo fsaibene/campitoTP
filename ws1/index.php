@@ -1,6 +1,7 @@
 <?php
 require_once('Clases/AccesoDatos.php');
 require_once('Clases/personas.php');
+require_once('Clases/local.php');
 require_once('Clases/producto.php');
 
 require 'vendor/autoload.php';
@@ -10,7 +11,6 @@ $configuration = [
         'displayErrorDetails' => true,
     ],
 ];
-
 $c = new \Slim\Container($configuration);
 $app = new \Slim\App($c);
 $app->get('/', function ($request, $response, $args) {
@@ -38,31 +38,32 @@ $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
  return json_encode($usuarioBuscado);
     
 });
-
 $app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
   $usuario=json_decode($args['objeto']);
   $usuarioBuscado=Usuario::InsertarUsuario($usuario);
  return json_encode($usuarioBuscado);
     
 });
+$app->post('/locales/alta/{objeto}', function ($request, $response, $args) {
+    $local=json_decode($args['objeto']);
+  $localBuscado=Local::InsertarLocal($local);
+ return json_encode($localBuscado);
 
+});
 $app->post('/usuarios/modificar/{obj}', function ($request, $response, $args) {
   $usuario=json_decode($args['obj']);
   $usuarioBuscado=Usuario::ModificarUsuario($usuario);
  return json_encode($usuarioBuscado);
 });
-
 $app->get('/usuarios/borrar/{objeto}', function ($request, $response, $args) {
   $usuario=json_decode($args['objeto']);
   $usuarioBuscado=Usuario::BorrarUsuario($usuario);
  return json_encode($usuarioBuscado);
 });
-
 $app->get('/usuarios/traertodos/', function ($request, $response, $args) {
   $datos=Usuario::TraerTodosLosUsuarios();
  return json_encode($datos);
 });
-
 $app->post('/productos/alta/{objeto}', function ($request, $response, $args) {
   $producto=json_decode($args['objeto']);
   $usuarioBuscado=Producto::Insertar($producto);
@@ -73,13 +74,21 @@ $app->get('/productos/traertodos/', function ($request, $response, $args) {
  return json_encode($arrProductos);
     
 });
+$app->get('/usuarios/traerEmpleados/', function ($request, $response, $args) {
+  $arrProductos=Usuario::TraerTodosLosEmpleados();
+ return json_encode($arrProductos);
 
+});
+$app->get('/usuarios/traerEncargados/', function ($request, $response, $args) {
+  $arrProductos=Usuario::TraerTodosLosEncargados();
+ return json_encode($arrProductos);
+
+});
 $app->delete('/productos/borrar/{id}', function ($request, $response, $args) {
   $arrProductos=Producto::Borrar($args['id']);
  return json_encode($arrProductos);
 });
 /* POST: Para crear recursos */
-
 $app->post('/archivos', function ($request, $response, $args) {
     
     if ( !empty( $_FILES ) ) {
@@ -93,7 +102,6 @@ $app->post('/archivos', function ($request, $response, $args) {
 }
     return $response;
 });
-
 // /* PUT: Para editar recursos */
 $app->put('/personas/{objeto}', function ($request, $response, $args) {
     $persona=json_decode($args['objeto']);
@@ -108,7 +116,6 @@ $app->put('/personas/{objeto}', function ($request, $response, $args) {
     return $response->write(Persona::ModificarPersona($persona));
 
 });
-
 // /* DELETE: Para eliminar recursos */
 $app->delete('/personas/{id}', function ($request, $response, $args) {
     return $response->write(Persona::BorrarPersona($args['id']));

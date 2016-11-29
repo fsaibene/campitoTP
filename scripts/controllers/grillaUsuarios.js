@@ -27,7 +27,7 @@ angular
         i18nService.setCurrentLang('es');
 
         var datos;
-        factoryGrilla.TraerTodos().
+        factoryGrilla.TraerTodosUsuarios().
         then(function(respuesta) {
                 $scope.gridOptions.data = respuesta;
             },

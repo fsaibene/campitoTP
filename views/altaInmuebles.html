@@ -58,6 +58,9 @@
                     <li ng-if="usuario.perfil == 'administrador'">
                         <a ui-sref="altaLocales">Alta Locales</a>
                     </li>
+                    <li ng-if="usuario.perfil == 'empleado'">
+                        <a ui-sref="altaInmuebles">Alta Inmubles</a>
+                    </li>
                     <li>
                         <a ui-sref="grilla">Grilla</a>
                     </li>
@@ -72,10 +75,24 @@
         </div>
     </nav>
 </aside>
-<div ui-grid="gridOptions" class="myGrid" style="float : right"
-     ui-grid-pagination
-     ui-grid-resize-columns
-     ui-grid-cellNav
-     ui-grid-edit
-     ui-grid-row-edit
-></div>
+<div ng-if="usuario.perfil == 'administrador'  || usuario.perfil == 'empleado'" style="width: 400px;margin: 0 auto; border-style: solid;
+    border-color: white; border-radius: 25px;; text-align : center">
+    <form id="FormIngreso" class="form-style-4" name="FormIngreso" enctype="multipart/form-data" >
+        <h3 style="color: white;">ALTA DE INMUEBLES</h3>
+        <input type="text"  placeholder="Ingrese direccion" ng-model="user.direccion" required><br>
+        <input type="text"  placeholder="Ingrese nombre" ng-model="user.nombre" required><br>
+        Empleado 1:
+        <select ng-model="user.id_empleado1">
+            <option ng-repeat="option in empleados" ng-model="user.id_empleado1" value="{{option.id}}">{{option.nombre}}</option>
+        </select><br>
+        Empleado 2:
+        <select ng-model="user.id_empleado2">
+            <option ng-repeat="option in empleados"  value="{{option.id}}">{{option.nombre}}</option>
+        </select><br>
+        Encargado:
+        <select ng-model="user.id_encargado">
+            <option ng-repeat="option in encargados" ng-model="user.id_encargado" value="{{option.id}}">{{option.nombre}}</option>
+        </select>
+        <input type="button" value="Alta de Inmueble" ng-disabled="FormIngreso.$invalid" ng-Click="AltaLocal()" >
+    </form>
+</div>

@@ -9,9 +9,11 @@ objeto = {};
 
  function InsertarUsuario(parametro){
   console.info(parametro);
-      return ABM.InsertarUsuario(parametro);
-
-        
+      return ABM.InsertarUsuario(parametro);        
+     } 
+    function InsertarLocal(parametro){
+  console.info(parametro);
+      return ABM.InsertarLocal(parametro);        
      }
 
   })//cierro factory
