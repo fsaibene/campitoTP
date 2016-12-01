@@ -8,6 +8,7 @@ angular
     'ui.grid.selection',
     'ui.grid.exporter',
     'ui.grid.edit',
+    "angularFileUpload",
     'ngMap'
     ]
     )

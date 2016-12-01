@@ -1,6 +1,7 @@
 <?php
 require_once('Clases/AccesoDatos.php');
 require_once('Clases/personas.php');
+require_once('Clases/inmueble.php');
 require_once('Clases/local.php');
 require_once('Clases/producto.php');
 
@@ -50,6 +51,13 @@ $app->post('/locales/alta/{objeto}', function ($request, $response, $args) {
  return json_encode($localBuscado);
 
 });
+$app->post('/inmuebles/alta/{objeto}', function ($request, $response, $args) {
+    $inmueble=json_decode($args['objeto']);
+//    print_r($inmueble);die();
+    $inmuebleB=Inmueble::InsertarInmueble($inmueble);
+ return json_encode($inmuebleB);
+
+});
 $app->post('/usuarios/modificar/{obj}', function ($request, $response, $args) {
   $usuario=json_decode($args['obj']);
   $usuarioBuscado=Usuario::ModificarUsuario($usuario);
@@ -81,6 +89,11 @@ $app->get('/usuarios/traerEmpleados/', function ($request, $response, $args) {
 });
 $app->get('/usuarios/traerEncargados/', function ($request, $response, $args) {
   $arrProductos=Usuario::TraerTodosLosEncargados();
+ return json_encode($arrProductos);
+
+});
+$app->get('/locales/traerLocales/', function ($request, $response, $args) {
+  $arrProductos=Local::TraerTodosLoslocales();
  return json_encode($arrProductos);
 
 });

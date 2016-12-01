@@ -79,20 +79,26 @@
     border-color: white; border-radius: 25px;; text-align : center">
     <form id="FormIngreso" class="form-style-4" name="FormIngreso" enctype="multipart/form-data" >
         <h3 style="color: white;">ALTA DE INMUEBLES</h3>
-        <input type="text"  placeholder="Ingrese direccion" ng-model="user.direccion" required><br>
-        <input type="text"  placeholder="Ingrese nombre" ng-model="user.nombre" required><br>
-        Empleado 1:
-        <select ng-model="user.id_empleado1">
-            <option ng-repeat="option in empleados" ng-model="user.id_empleado1" value="{{option.id}}">{{option.nombre}}</option>
-        </select><br>
-        Empleado 2:
-        <select ng-model="user.id_empleado2">
-            <option ng-repeat="option in empleados"  value="{{option.id}}">{{option.nombre}}</option>
-        </select><br>
-        Encargado:
-        <select ng-model="user.id_encargado">
-            <option ng-repeat="option in encargados" ng-model="user.id_encargado" value="{{option.id}}">{{option.nombre}}</option>
+        <input type="text"  placeholder="Ingrese calle" ng-model="user.calle" required><br>
+        <input type="text"  placeholder="Ingrese altura" ng-model="user.altura" required><br>
+        <input type="text"  placeholder="Ingrese localidad" ng-model="user.localidad" required><br>
+
+        Local que lo ofrece:
+        <select ng-model="user.id_local">
+            <option ng-repeat="option in locales" ng-model="user.id" value="{{option.id}}">{{option.nombre}}</option>
         </select>
-        <input type="button" value="Alta de Inmueble" ng-disabled="FormIngreso.$invalid" ng-Click="AltaLocal()" >
+        <input ng-show="!uploader.queue[0]" type="file" nv-file-select uploader="uploader"/>
+        <li ng-repeat="item in uploader.queue">
+            <!-- nombre del archivo -->
+            <span ng-bind="item.file.name"></span><br/>
+            <!-- imagen del archivo -->
+            <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+
+            <button type="button" class="btn btn-warning btn-xs" ng-click="item.remove()">
+                <span class="glyphicon glyphicon-trash"></span> Cambiar
+            </button>
+        </li>         </li>
+        <input type="hidden" value="" ng-model="usuario.foto"/>
+        <input type="button" value="Alta de Inmueble" ng-disabled="FormIngreso.$invalid" ng-Click="AltaInmueble()" >
     </form>
 </div>

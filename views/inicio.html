@@ -62,6 +62,9 @@
           <li ng-if="usuario.perfil == 'administrador'">
             <a ui-sref="altaLocales">Alta Locales</a>
           </li>
+          <li ng-if="usuario.perfil == 'empleado'">
+            <a ui-sref="altaInmuebles">Alta Inmubles</a>
+          </li>
           <li>
             <a ui-sref="grilla">Grilla</a>
           </li>

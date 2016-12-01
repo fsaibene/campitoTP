@@ -1,6 +1,6 @@
 angular
     .module('miApp')
-    .controller('altaLocales', function($scope, $auth, $state,ABM, factoryProducto, factoryUser) {
+    .controller('altaLocales', function($scope, $auth, $state,ABM, factoryProducto, factoryUser, FileUploader) {
         $scope.nada = "nada";
         $scope.usuario = {};
         $scope.user = {};
@@ -30,6 +30,4 @@ angular
                     $state.go("inicio");
                 });
         }
-    })/**
- * Created by ferna on 28/11/2016.
- */
+    })

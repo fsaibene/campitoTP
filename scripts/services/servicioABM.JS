@@ -5,10 +5,14 @@ angular
 
     this.InsertarUsuario = InsertarUsuario;
     this.InsertarLocal = InsertarLocal;
+    this.InsertarInmueble = InsertarInmueble;
     this.TraerObjeto = TraerObjeto;
     this.BorrarObjeto = BorrarObjeto;
     this.TraerTodosLosEmpleados = TraerTodosLosEmpleados;
     this.TraerTodosLosEncargados = TraerTodosLosEncargados;
+    this.TraerTodosLosLocales = TraerTodosLosLocales;
+    this.ApiArchivos = ApiArchivos;
+
 
     function InsertarUsuario(objeto){
         return $http.post(Url + "usuarios/alta/" + objeto)
@@ -18,6 +22,12 @@ angular
      }
     function InsertarLocal(objeto){
         return $http.post(Url + "locales/alta/" + objeto)
+            .then(function(respuesta) {
+                return respuesta.data
+            })
+    }
+    function InsertarInmueble(objeto){
+        return $http.post(Url + "inmuebles/alta/" + objeto)
             .then(function(respuesta) {
                 return respuesta.data
             })
@@ -40,6 +50,12 @@ angular
             .then(function(respuesta) {
                 return respuesta.data
             })
+    };   
+    function TraerTodosLosLocales(){
+        return $http.get(Url + "locales/traerLocales/")
+            .then(function(respuesta) {
+                return respuesta.data
+            })
     };
     function BorrarObjeto(id){
         console.info(id);
@@ -48,4 +64,7 @@ angular
                 return TraerTodos();
             });
     };
+    function ApiArchivos(){
+        return factoryRutas.ApiUrl + "archivos";
+    }
 });

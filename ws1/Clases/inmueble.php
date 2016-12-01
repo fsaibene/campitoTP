@@ -19,16 +19,11 @@ class Inmueble
             $this->foto = $obj->foto;
         }
     }
-
-//--TOSTRING
-    public function ToString(){
-        return $this->apellido."-".$this->altura."-".$this->dni."-".$this->foto;
-    }
 //--METODO DE CLASE
-    public static function TraerUnInmueble($calle){
+    public static function TraerUnInmueble($id){
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-        $consulta =$objetoAccesoDato->RetornarConsulta("select * from inmuebles  where  calle=:calle");
-        $consulta->bindValue(':calle', $calle, PDO::PARAM_STR);
+        $consulta =$objetoAccesoDato->RetornarConsulta("select * from inmuebles  where  id=:id");
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
         $personaBuscada= $consulta->fetchObject('Inmueble');
         return $personaBuscada;
@@ -37,7 +32,7 @@ class Inmueble
     public static function TraerTodosLosInmuebles(){
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
         //$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
-        $consulta =$objetoAccesoDato->RetornarConsulta("select id,calle as calle,altura as altura, localidad as localidad,foto as foto  from inmuebles");
+        $consulta =$objetoAccesoDato->RetornarConsulta("select *  from inmuebles");
         $consulta->execute();
         $arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Inmueble");
         return $arrEmpleado;
@@ -74,14 +69,14 @@ class Inmueble
 
     public static function InsertarInmueble($Inmueble){
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-        //$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into Inmueble (altura,apellido,dni,foto)values(:altura,:apellido,:dni,:foto)");
-        $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into inmuebles (calle,altura,localidad,foto)values(:calle,:altura,:localidad,:foto)");
-        $consulta->bindValue(':altura',$Inmueble->altura, PDO::PARAM_STR);
+        $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into inmuebles (calle,altura,localidad,foto,id_local)values(:calle,:altura,:localidad,:foto,:id_local)");
         $consulta->bindValue(':calle', $Inmueble->calle, PDO::PARAM_STR);
+        $consulta->bindValue(':altura',$Inmueble->altura, PDO::PARAM_STR);
         $consulta->bindValue(':localidad', $Inmueble->localidad, PDO::PARAM_STR);
         $consulta->bindValue(':foto', $Inmueble->foto, PDO::PARAM_STR);
+        $consulta->bindValue(':id_local', $Inmueble->id_local, PDO::PARAM_INT);
         $consulta->execute();
         return $objetoAccesoDato->RetornarUltimoIdInsertado();
     }
-    
+
 }
